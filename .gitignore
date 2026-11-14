@@ -1,0 +1,5 @@
+.env
+*.key
+.jellyfin-key
+__pycache__/
+*.pyc
