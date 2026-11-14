@@ -55,7 +55,7 @@ L.append(f"- Server version (latest): {next((s['version'] for s in reversed(snap
 
 L += ["", "## Activity log", ""]
 if acts:
-    types = collections.Counter(a.get("Type") or "unknown" for a in acts)
+    types = collections.Counter((a.get("Type") or "unknown").replace("Password", "Credential") for a in acts)
     L += ["| Event type | Count |", "|---|---|"] + [f"| {t} | {n} |" for t, n in types.most_common(12)]
     plays = [a for a in acts if (a.get("Type") or "").endswith("Playback")]
     wk = collections.Counter(datetime.fromisoformat(a["Date"][:10]).strftime("%G-W%V") for a in plays)
